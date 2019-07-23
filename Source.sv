@@ -22,15 +22,17 @@ package Source;
       for(int i = 0; i < this.typeOnePackets; i++) begin
         PacketOne = new();
         PacketPointer = PacketOne;
+        PacketPointer.initPacket($urandom_range(1, 1000));
         outChan.put(PacketPointer);
-        $display("Source: Sent Packet of ID: %0d", PacketPointer.packetID);
+        $display("Source: Sent Packet of the first type of ID: %0d", PacketPointer.packetID);
       end
 
       for(int i = 0; i < this.typeTwoPackets; i++) begin
         PacketTwo = new();
         PacketPointer = PacketTwo;
+        PacketPointer.initPacket($urandom_range(1, 1000));
         outChan.put(PacketPointer);
-        $display("Source: Sent Packet of ID: %0d", PacketPointer.packetID);
+        $display("Source: Sent Packet of the second type of ID: %0d", PacketPointer.packetID);
       end
 
     endtask
