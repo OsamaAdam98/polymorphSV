@@ -15,8 +15,8 @@ package Env;
     
     task automatic run();
       fork
-        snk.run(); // start up Sink
         src.run(); // start up Source
+        snk.run(); // start up Sink
       join_none
     endtask
   endclass

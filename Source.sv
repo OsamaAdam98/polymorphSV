@@ -7,8 +7,8 @@ package Source;
     mailbox #(Packet) outChan = new();
     int typeOnePackets, typeTwoPackets;
     Packet PacketPointer;
-    PacketTypeOne PacketOne = new();
-    PacketTypeTwo PacketTwo = new();
+    PacketTypeOne PacketOne;
+    PacketTypeTwo PacketTwo;
 
     function new(int typeOnePackets, typeTwoPackets);
 
@@ -19,13 +19,19 @@ package Source;
 
     task run();
 
-      PacketOne.initPacket(this.typeOnePackets);
-      PacketTwo.initPacket(this.typeTwoPackets);
+      for(int i = 0; i < this.typeOnePackets; i++) begin
+        PacketOne = new();
+        PacketPointer = PacketOne;
+        outChan.put(PacketPointer);
+        $display("Source: Sent Packet of ID: %0d", PacketPointer.packetID);
+      end
 
-      PacketPointer = PacketOne;
-      outChan.put(PacketPointer);
-      PacketPointer = PacketTwo;
-      outchat.put(PacketPointer);
+      for(int i = 0; i < this.typeTwoPackets; i++) begin
+        PacketTwo = new();
+        PacketPointer = PacketTwo;
+        outChan.put(PacketPointer);
+        $display("Source: Sent Packet of ID: %0d", PacketPointer.packetID);
+      end
 
     endtask
 

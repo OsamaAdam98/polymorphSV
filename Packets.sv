@@ -21,8 +21,8 @@ package Packets;
     function void initPacket(int payloadSize);
       payload = new[payloadSize];
       for (int i = 0; i < payloadSize; i++)
-        payload[i] = $random() % 256;
-      gen_crc();    
+        payload[i] = $urandom() % 256;
+      genCRC();    
   //    crc++; // insert error by uncommenting this line
     endfunction 
   endclass
@@ -32,8 +32,12 @@ package Packets;
     function void genCRC();
 
       foreach(payload[i])
-        crc += payload[i]
+        crc += payload[i];
 
+    endfunction
+
+    function bit checkCRC();
+      return 1;
     endfunction
 
   endclass
@@ -43,8 +47,12 @@ package Packets;
     function void genCRC();
 
       foreach(payload[i])
-        crc *= payload[i]
+        crc *= payload[i];
 
+    endfunction
+
+    function bit checkCRC();
+      return 1;
     endfunction
 
   endclass
