@@ -1,8 +1,12 @@
-module top();
-  import types_pkg::*;
-  env test_env = new();  
+module Top();
+
+  import Env::*, Source::*, Sink::*;
+
+  Env testEnv = new();  
+
   initial begin
-    test_env.connect();
-    test_env.run();
+    testEnv.connect();
+    testEnv.run();
   end     
+
 endmodule
