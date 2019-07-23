@@ -1,6 +1,6 @@
 module Top();
 
-  import Env::*, Source::*, Sink::*;
+  import Env::*;
 
   Env testEnv = new();  
 

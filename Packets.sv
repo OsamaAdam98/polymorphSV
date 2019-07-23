@@ -13,7 +13,7 @@ package Packets;
     
     pure virtual function void genCRC(); //endfunction
 
-    function bit checkCRC();
+    function bit checkCRC(); // More efficient than making it a virtual method.
 
       if(generatedCRC == crc)
         return 1;
@@ -30,9 +30,9 @@ package Packets;
     function void initPacket(int payloadSize);
       payload = new[payloadSize];
       for (int i = 0; i < payloadSize; i++)
-        payload[i] = $urandom_range(1, 1000); //Edited so it doesn't generate any zeros.
+        payload[i] = $urandom_range(1, 1000); //Edited so it doesn't generate any zeros corrupting PacketTypeTwo.
       genCRC();    
-      //crc++; // insert error by uncommenting this line
+      crc++; // insert error by uncommenting this line
       //$display("genCRC = %0d, CRC = %0d", generatedCRC, crc);
     endfunction 
   endclass
